@@ -108,7 +108,11 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
       const data = await res.json().catch(() => ({}));
 
       if (!res.ok || data.success === false) {
-        throw new Error(data.message || data.error || "Erro ao processar e-mail. Tente novamente.");
+        throw new Error(data.message || data.error || "Erro de conexão ao enviar e-mail. Tente novamente.");
+      }
+
+      if (data.emailStatus && data.emailStatus.success === false) {
+        throw new Error(`Ocorreu uma falha no servidor de e-mail (${data.emailStatus.error || "SMTP"}). Por favor, tente novamente ou nos chame no WhatsApp.`);
       }
 
       const newLead: SavedLead = {
