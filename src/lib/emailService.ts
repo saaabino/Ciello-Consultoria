@@ -11,8 +11,13 @@ export interface LeadEmailData {
 export async function sendLeadNotificationEmail(lead: LeadEmailData): Promise<{ success: boolean; messageId?: string; error?: string }> {
   const host = process.env.SMTP_HOST || 'smtp.hostinger.com';
   const user = process.env.SMTP_USER || 'contato@mentorads.me';
-  const pass = process.env.SMTP_PASS || '@Lokura3001';
+  const pass = process.env.SMTP_PASS;
   const recipient = process.env.LEAD_RECIPIENT_EMAIL || 'ciello.consultoria11@gmail.com';
+
+  if (!pass) {
+    console.error("ERRO: SMTP_PASS não configurada no arquivo de ambiente (.env)");
+    return { success: false, error: "Senha do servidor de e-mail (SMTP_PASS) não configurada no ambiente." };
+  }
 
   const htmlContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #1a1a1a; color: #ffffff; padding: 24px; border-radius: 12px; border: 1px solid #c5a059;">
