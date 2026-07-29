@@ -91,8 +91,8 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
     }
 
     try {
-      // Save locally / trigger webhook server call
-      await fetch('/api/application', {
+      // Submit lead to backend API which sends email to ciello.consultoria11@gmail.com
+      const res = await fetch('/api/application', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -103,7 +103,13 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
           mainChallenge: formData.mainChallenge,
           webhookUrl: webhookUrl
         })
-      }).catch(() => {});
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok || data.success === false) {
+        throw new Error(data.message || data.error || "Erro ao processar e-mail. Tente novamente.");
+      }
 
       const newLead: SavedLead = {
         id: Date.now().toString(),
@@ -120,14 +126,9 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
       }
 
       setSubmitted(true);
-
-      // Open WhatsApp directly with pre-filled lead data
-      const waUrl = getWhatsAppLink();
-      window.open(waUrl, '_blank');
-    } catch (err) {
+    } catch (err: any) {
       console.error("Submission error:", err);
-      setSubmitted(true);
-      window.open(getWhatsAppLink(), '_blank');
+      setErrorMessage(err?.message || "Não foi possível enviar o e-mail no momento. Tente novamente ou entre em contato direto pelo WhatsApp.");
     } finally {
       setLoading(false);
     }
@@ -157,7 +158,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
           </h2>
 
           <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto">
-            Preencha os dados abaixo. Sua aplicação será formatada e enviada diretamente para atendimento prioritário via WhatsApp ou E-mail.
+            Preencha os dados abaixo. Sua aplicação será enviada diretamente para o e-mail oficial da Mentoria Meta Ousada.
           </p>
         </div>
 
@@ -174,17 +175,17 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
 
               <div className="space-y-2">
                 <h3 className="text-2xl font-black uppercase text-white">
-                  Aplicação Gerada com Sucesso!
+                  Aplicação Enviada por E-mail com Sucesso!
                 </h3>
                 <p className="text-gray-300 text-sm max-w-md mx-auto">
-                  Sua ficha foi preenchida. Caso a janela do WhatsApp não tenha aberto automaticamente, utilize os botões abaixo para enviar sua aplicação:
+                  Sua ficha de aplicação foi recebida com sucesso pela equipe da mentoria. Entraremos em contato em breve através do seu e-mail ou WhatsApp!
                 </p>
               </div>
 
               {/* Formatted Lead Summary Preview */}
               <div className="text-left bg-[#1A1A1A] p-5 rounded-2xl border border-[#C5A059]/30 max-w-lg mx-auto space-y-2 text-xs text-gray-300">
                 <p className="font-bold text-[#C5A059] uppercase tracking-wider text-[11px] mb-1">
-                  Resumo da sua aplicação:
+                  Resumo da sua aplicação enviada:
                 </p>
                 <p><strong className="text-white">Nome:</strong> {formData.fullName}</p>
                 <p><strong className="text-white">E-mail:</strong> {formData.email}</p>
@@ -193,7 +194,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
                 {formData.mainChallenge && <p><strong className="text-white">Maior Desafio:</strong> {formData.mainChallenge}</p>}
               </div>
 
-              {/* Direct Action Buttons: WhatsApp or E-mail */}
+              {/* Action Options */}
               <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a
                   href={getWhatsAppLink()}
@@ -202,16 +203,8 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
                   className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-full bg-[#C5A059] text-white font-black text-xs uppercase tracking-widest hover:bg-[#A38244] transition-all shadow-lg"
                 >
                   <MessageCircle className="w-4 h-4 fill-white" />
-                  <span>Enviar via WhatsApp</span>
+                  <span>Falar também no WhatsApp (Opcional)</span>
                   <ArrowRight className="w-4 h-4" />
-                </a>
-
-                <a
-                  href={getEmailLink()}
-                  className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-full bg-[#1A1A1A] text-white font-black text-xs uppercase tracking-widest hover:bg-[#333333] transition-all border border-[#C5A059]/40"
-                >
-                  <Mail className="w-4 h-4 text-[#C5A059]" />
-                  <span>Enviar por E-mail</span>
                 </a>
               </div>
 
@@ -331,12 +324,12 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
                   {loading ? (
                     <>
                       <RefreshCw className="w-5 h-5 animate-spin" />
-                      <span>Gerando Aplicação...</span>
+                      <span>Enviando por E-mail...</span>
                     </>
                   ) : (
                     <>
-                      <Send className="w-5 h-5 fill-white" />
-                      <span>Enviar Aplicação via WhatsApp</span>
+                      <Mail className="w-5 h-5 text-white" />
+                      <span>Enviar Aplicação por E-mail</span>
                     </>
                   )}
                 </button>

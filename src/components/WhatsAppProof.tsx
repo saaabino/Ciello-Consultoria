@@ -17,9 +17,7 @@ export const WhatsAppProof: React.FC<WhatsAppProofProps> = ({
   const [isPaused, setIsPaused] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const whatsappUrl = `https://wa.me/${whatsAppPhone.replace(/\D/g, '')}?text=${encodeURIComponent(
-    whatsAppMessage + " (Vi os resultados dos alunos no site e quero saber como aplicar o método no meu modelo de negócio.)"
-  )}`;
+  const whatsappUrl = `https://wa.me/${whatsAppPhone.replace(/\D/g, '')}?text=${encodeURIComponent(whatsAppMessage)}`;
 
   const filteredScreenshots = TESTIMONIAL_SCREENSHOTS.filter((item) => {
     if (filterMode === 'revenue') {

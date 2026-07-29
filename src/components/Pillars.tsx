@@ -35,9 +35,7 @@ export const Pillars: React.FC<PillarsProps> = ({
   };
 
   const activePillar = PILLARS.find(p => p.id === activeTab) || PILLARS[0];
-  const whatsappUrl = `https://wa.me/${whatsAppPhone.replace(/\D/g, '')}?text=${encodeURIComponent(
-    whatsAppMessage + ` (Gostaria de saber mais sobre o ${activePillar.number}: ${activePillar.title})`
-  )}`;
+  const whatsappUrl = `https://wa.me/${whatsAppPhone.replace(/\D/g, '')}?text=${encodeURIComponent(whatsAppMessage)}`;
 
   return (
     <section id="pilares" className="py-20 md:py-28 bg-[#F5F2ED] text-[#1A1A1A] relative">

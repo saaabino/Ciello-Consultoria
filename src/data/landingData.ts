@@ -7,7 +7,7 @@ export const MENTOR_IMAGES = {
 
 export const DEFAULT_CONFIG = {
   whatsAppPhone: "5549988941588",
-  whatsAppMessage: "Olá! Assisti ao site da Mentoria Meta Ousada e gostaria de agendar uma conversa com a equipe para avaliar se o meu perfil se encaixa na mentoria.",
+  whatsAppMessage: "Olá, vim através do site! Gostaria de saber mais sobre a Mentoria Meta Ousada, poderia me dar mais informações?",
   webhookUrl: "https://n8n.exemplo.com/webhook/meta-ousada-leads"
 };
 

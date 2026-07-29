@@ -21,9 +21,7 @@ export const Agitation: React.FC<AgitationProps> = ({
     }
   };
 
-  const whatsappUrl = `https://wa.me/${whatsAppPhone.replace(/\D/g, '')}?text=${encodeURIComponent(
-    whatsAppMessage + " (Identifiquei algumas dificuldades no meu processo de vendas e quero entender como a mentoria pode me ajudar.)"
-  )}`;
+  const whatsappUrl = `https://wa.me/${whatsAppPhone.replace(/\D/g, '')}?text=${encodeURIComponent(whatsAppMessage)}`;
 
   return (
     <section id="agitacao" className="py-20 md:py-28 bg-[#F5F2ED] text-[#1A1A1A] relative">

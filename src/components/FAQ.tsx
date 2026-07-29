@@ -17,9 +17,7 @@ export const FAQ: React.FC<FAQProps> = ({
     setOpenId(openId === id ? null : id);
   };
 
-  const whatsappUrl = `https://wa.me/${whatsAppPhone.replace(/\D/g, '')}?text=${encodeURIComponent(
-    whatsAppMessage + " (Tenho uma dúvida específica sobre a mentoria.)"
-  )}`;
+  const whatsappUrl = `https://wa.me/${whatsAppPhone.replace(/\D/g, '')}?text=${encodeURIComponent(whatsAppMessage)}`;
 
   return (
     <section id="faq" className="py-20 md:py-28 bg-[#F5F2ED] text-[#1A1A1A] relative">
