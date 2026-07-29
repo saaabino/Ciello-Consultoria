@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #F5F2ED;
+    color: #1A1A1A;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-serif-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  .font-luxury {
+    font-family: 'Cinzel', serif;
+  }
+}
+
+/* Custom Gold & Sand Utilities for Sleek Interface */
+.bg-sand-50 { background-color: #F5F2ED; }
+.bg-sand-100 { background-color: #EAE5DD; }
+.bg-sand-200 { background-color: #DFD9CE; }
+.bg-sand-300 { background-color: #C5A059; }
+
+.bg-charcoal-900 { background-color: #121214; }
+.bg-charcoal-800 { background-color: #1A1A1A; }
+.bg-charcoal-700 { background-color: #262626; }
+
+.text-gold-500 { color: #C5A059; }
+.text-gold-600 { color: #A38244; }
+.text-gold-400 { color: #D5B069; }
+
+.border-gold-500\/30 { border-color: rgba(197, 160, 89, 0.3); }
+.border-gold-500\/50 { border-color: rgba(197, 160, 89, 0.5); }
+
+/* Shimmer & Gradient Effects */
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #D5B069 0%, #C5A059 50%, #9B7B3C 100%);
+}
+
+.bg-gold-gradient-hover {
+  background: linear-gradient(135deg, #E0BF7A 0%, #B8934A 50%, #8A6D33 100%);
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #D5B069 0%, #F3E2B8 50%, #C5A059 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-glow {
+  box-shadow: 0 10px 30px -5px rgba(197, 160, 89, 0.35);
+}
+
+.gold-glow-lg {
+  box-shadow: 0 20px 40px -10px rgba(197, 160, 89, 0.45);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1A1A1A;
+}
+::-webkit-scrollbar-thumb {
+  background: #C5A059;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D5B069;
+}
+
+/* Pulse animation for WhatsApp button badge */
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 0.4; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s infinite ease-in-out;
+}
+
+/* Infinite Marquee Reel for Testimonial Screenshots */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Hide scrollbars for clean custom horizontal scrolling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
