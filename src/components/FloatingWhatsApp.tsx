@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MessageCircle, X } from 'lucide-react';
+import { trackWhatsAppClick } from '../lib/metaPixel';
 
 interface FloatingWhatsAppProps {
   whatsAppPhone: string;
@@ -45,6 +46,7 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Falar no WhatsApp"
+        onClick={() => trackWhatsAppClick('Floating Widget')}
         className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center shadow-2xl transition-all duration-300 transform hover:scale-110 active:scale-95 group"
       >
         {/* Outer Pulsing Ring */}

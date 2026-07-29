@@ -1,6 +1,7 @@
 import React from 'react';
 import { MessageCircle, ShieldCheck, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
 import { MENTOR_IMAGES } from '../data/landingData';
+import { trackWhatsAppClick, trackCTAClick } from '../lib/metaPixel';
 
 interface HeroProps {
   whatsAppPhone: string;
@@ -69,6 +70,7 @@ export const Hero: React.FC<HeroProps> = ({
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick('Hero Section')}
                 className="inline-flex items-center justify-center space-x-3 px-8 py-4 rounded-full bg-[#C5A059] text-white font-black text-xs sm:text-sm uppercase tracking-widest hover:bg-[#A38244] shadow-xl shadow-[#C5A059]/30 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0"
               >
                 <MessageCircle className="w-5 h-5 fill-white shrink-0" />
@@ -79,6 +81,7 @@ export const Hero: React.FC<HeroProps> = ({
               <a
                 id="hero-secondary-cta"
                 href="#aplicacao"
+                onClick={() => trackCTAClick('Hero - Preencher Aplicacao')}
                 className="inline-flex items-center justify-center space-x-2 px-6 py-4 rounded-full bg-[#262626] hover:bg-[#333333] text-stone-200 hover:text-white font-bold text-xs uppercase tracking-widest border border-[#C5A059]/30 transition-all duration-200"
               >
                 <span>Preencher Aplicação</span>

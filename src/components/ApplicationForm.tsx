@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle2, AlertCircle, Sparkles, MessageCircle, Mail, RefreshCw, ArrowRight } from 'lucide-react';
 import { LeadFormData, SavedLead } from '../types';
+import { trackLeadSubmission, trackWhatsAppClick } from '../lib/metaPixel';
 
 interface ApplicationFormProps {
   webhookUrl: string;
@@ -121,6 +122,14 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
         createdAt: new Date().toISOString()
       };
 
+      // Track Meta Pixel Lead event
+      trackLeadSubmission({
+        name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        segment: formData.segment
+      });
+
       if (onLeadSubmitted) {
         onLeadSubmitted(newLead);
       }
@@ -138,6 +147,14 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
         mainChallenge: formData.mainChallenge,
         createdAt: new Date().toISOString()
       };
+
+      // Track Meta Pixel Lead event even on fallback
+      trackLeadSubmission({
+        name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        segment: formData.segment
+      });
 
       if (onLeadSubmitted) {
         onLeadSubmitted(newLead);
@@ -216,6 +233,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
                   href={getWhatsAppLink()}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackWhatsAppClick('Application Success Screen')}
                   className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-full bg-[#C5A059] text-white font-black text-xs uppercase tracking-widest hover:bg-[#A38244] transition-all shadow-lg"
                 >
                   <MessageCircle className="w-4 h-4 fill-white" />
