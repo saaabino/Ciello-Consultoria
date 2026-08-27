@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PILLARS } from '../data/landingData';
+import { trackWhatsAppClick } from '../lib/metaPixel';
 import {
   ShieldCheck,
   Sparkles,
@@ -45,7 +46,7 @@ export const Pillars: React.FC<PillarsProps> = ({
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#EAE5DD] border border-[#C5A059]/30 text-[#C5A059] text-xs font-bold tracking-[0.2em] uppercase">
             <Compass className="w-4 h-4 text-[#C5A059]" />
-            <span>Os 5 Pilares da Virada</span>
+            <span>Os 5 Pilares do Método 5D</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-[#1A1A1A] tracking-tight leading-tight">
@@ -53,7 +54,7 @@ export const Pillars: React.FC<PillarsProps> = ({
           </h2>
 
           <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
-            Uma estrutura passo a passo desenhada para integrar mentalidade, posicionamento e técnicas avançadas de negociação.
+            Uma estrutura passo a passo desenhada para integrar gestão, processos e capacitação comercial da sua equipe.
           </p>
         </div>
 
@@ -128,10 +129,11 @@ export const Pillars: React.FC<PillarsProps> = ({
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackWhatsAppClick(`Pillar ${activePillar.id}`)}
                   className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-full bg-[#C5A059] text-white font-black text-xs uppercase tracking-widest hover:bg-[#A38244] shadow-md transition-all"
                 >
                   <MessageCircle className="w-4 h-4 fill-white" />
-                  <span>Quero Dominar o Pilar 0{activePillar.id}</span>
+                  <span>Quero Estruturar o Pilar 0{activePillar.id}</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
               </div>

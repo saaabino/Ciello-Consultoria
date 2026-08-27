@@ -7,7 +7,7 @@ export const MENTOR_IMAGES = {
 
 export const DEFAULT_CONFIG = {
   whatsAppPhone: "5549988941588",
-  whatsAppMessage: "Olá, vim através do site! Gostaria de saber mais sobre a Mentoria Meta Ousada, poderia me dar mais informações?",
+  whatsAppMessage: "Olá, vim através do site! Gostaria de saber mais sobre a Consultoria Método 5D Comercial para minha empresa.",
   webhookUrl: "https://n8n.exemplo.com/webhook/meta-ousada-leads"
 };
 
@@ -15,65 +15,65 @@ export const PILLARS: PillarModule[] = [
   {
     id: 1,
     number: "Módulo 1",
-    title: "Base Emocional",
-    subtitle: "Mentalidade Inabalável & Desbloqueio de Crenças",
-    description: "Identificação profunda das crenças limitantes que sabotam suas metas financeiras. Eliminação do medo do julgamento, da impostora interna e construção de autoconfiança diária para agir com firmeza e autoridade.",
+    title: "Gestão Estratégica de Acompanhamento",
+    subtitle: "Liderança e Indicadores",
+    description: "Estruturação de um modelo de gestão comercial contendo rotina de reuniões, alinhamentos, feedbacks e desenvolvimento da equipe, servindo como suporte para a liderança atual e futuros gestores.",
     highlights: [
-      "Mapeamento e substituição de crenças sobre dinheiro e sucesso",
-      "Rotina diária de ativação da autoconfiança e postura de liderança",
-      "Fortalecimento emocional contra rejeições e objeções no processo comercial"
+      "Rotina de alinhamentos e feedbacks da equipe",
+      "Acompanhamento de performance e indicadores",
+      "Perfil comportamental do gestor para fortalecer liderança"
     ],
     iconName: "ShieldCheck"
   },
   {
     id: 2,
     number: "Módulo 2",
-    title: "Autoconfiança Aplicada",
-    subtitle: "Posicionamento de Autoridade & Vendas Sem Pressão",
-    description: "Como se posicionar no mercado como um profissional desejado, atraindo os clientes certos. Aprenda a conduzir conversas de vendas de forma elegante, fluida e totalmente natural, sem nunca parecer insistente ou chato.",
+    title: "Gestão Estratégica de Processos",
+    subtitle: "Funil, CRM e Rotina",
+    description: "Estruturação de um processo comercial mais eficiente, visando aumentar a conversão, melhorar a experiência do cliente e gerar maior previsibilidade nos resultados da empresa.",
     highlights: [
-      "Elevação da percepção de valor dos seus serviços",
-      "Comunicação assertiva e postura de consultor especialista",
-      "Método de venda consultiva onde o cliente pede para comprar"
+      "Estruturação do funil comercial e organização do CRM",
+      "Rotina de follow-up e estratégias de pós-venda",
+      "Processo de onboarding para novos vendedores"
     ],
     iconName: "Sparkles"
   },
   {
     id: 3,
     number: "Módulo 3",
-    title: "Conversa e Persuasão",
-    subtitle: "Mapeamento Estratégico com Metodologias Globais",
-    description: "Domine a arte de fazer as perguntas certas. Utilizando estruturas consagradas como SPIN Selling, BANT e NEPQ, você entenderá a dor real do prospect e fará com que ele perceba sozinho a urgência da sua solução.",
+    title: "Venda Comportamental e Conexão",
+    subtitle: "Adaptação e Inteligência Emocional",
+    description: "Treinamento prático com a equipe comercial para identificar o perfil comportamental do cliente e adaptar a comunicação, gerando mais conexão e confiança durante o processo de venda.",
     highlights: [
-      "Aplicação prática de SPIN Selling, BANT e NEPQ adaptadas ao seu nicho",
-      "Perguntas diagnósticas que geram desejo imediato no cliente",
-      "Condução estratégica da reunião do início ao diagnóstico de dor"
+      "Identificação do perfil do cliente (presencial e online)",
+      "Inteligência emocional para lidar com objeções e perfis variados",
+      "Postura, relacionamento e pontos fortes de cada colaborador"
     ],
     iconName: "MessageSquareText"
   },
   {
     id: 4,
     number: "Módulo 4",
-    title: "Fechamento Humanizado",
-    subtitle: "Roteiros Adaptáveis & Sequências de Follow-up",
-    description: "Aprenda a contornar objeções de forma leve, empática e altamente eficaz. Tenha roteiros customizados para o seu modelo de negócio e implemente sequências de acompanhamento que convertem sem desgastar o relacionamento.",
+    title: "Negociação e Conversão",
+    subtitle: "Persuasão e Fechamento",
+    description: "Desenvolvimento de habilidades técnicas para contornar objeções de forma assertiva, aumentar o ticket médio e aplicar técnicas de fechamento que alavanquem os resultados da equipe.",
     highlights: [
-      "Matriz de contorno de objeções ('preciso pensar', 'vou falar com o sócio')",
-      "Sequência elegante de acompanhamento (Follow-up de Alto Valor)",
-      "Técnicas de ancoragem e fechamento humanizado"
+      "Técnicas de construção de relacionamento desde o primeiro contato",
+      "Persuasão e condução estratégica da venda",
+      "Identificação de objeções e aumento de ticket médio"
     ],
     iconName: "Handshake"
   },
   {
     id: 5,
     number: "Módulo 5",
-    title: "Metas Ousadas",
-    subtitle: "Planejamento Estratégico & Escala do Faturamento",
-    description: "Crie um plano de ação claro e previsível para dobrar os seus resultados. Definição de metas audaciosas, métricas comerciais diárias e estruturação da sua rotina para crescer de forma consistente e sustentável.",
+    title: "Acompanhamento e Implantação",
+    subtitle: "Resultados Práticos e Ajustes Contínuos",
+    description: "Garantia da aplicação prática dos processos, com análise dos atendimentos, identificação de oportunidades de melhoria e reporte periódico à gestão sobre a evolução da equipe.",
     highlights: [
-      "Planejamento comercial estratégico para os próximos 12 meses",
-      "Metas de faturamento desdobradas em ações diárias praticáveis",
-      "Visão de escala e construção de receita previsível"
+      "Análise contínua dos atendimentos e funil de vendas",
+      "Acompanhamento da aplicação dos feedbacks",
+      "Suporte para a liderança na implantação de mudanças"
     ],
     iconName: "TrendingUp"
   }
@@ -186,51 +186,51 @@ export const TESTIMONIAL_SCREENSHOTS: TestimonialScreenshot[] = [
 export const FAQ_ITEMS: FAQItem[] = [
   {
     id: "faq_1",
-    question: "Qual é a duração da Mentoria Meta Ousada?",
-    answer: "A Mentoria Meta Ousada possui 4 meses de acompanhamento intensivo e direcionado, estruturado para você implementar as estratégias e colher resultados expressivos durante e após o programa."
+    question: "Qual é a duração da Consultoria Método 5D Comercial?",
+    answer: "A Consultoria possui 4 meses de acompanhamento intensivo e direcionado, estruturado para identificar pontos de melhoria, estruturar processos e treinar a equipe."
   },
   {
     id: "faq_2",
     question: "Como funciona o suporte no dia a dia?",
-    answer: "Além do grupo com profissionais seletos, você terá suporte e orientação individualizada via WhatsApp diretamente com a equipe da mentoria para tirar dúvidas pontuais e ajustar propostas em tempo real."
+    answer: "A liderança da empresa e a equipe terão suporte semanal via WhatsApp para tirar dúvidas relacionadas à gestão, feedbacks, atendimentos, fechamento de vendas e desenvolvimento da equipe."
   },
   {
     id: "faq_3",
-    question: "Como são realizados os encontros ao vivo?",
-    answer: "Os encontros são quinzenais, online, com duração média de 1h30. Neles, realizamos análises estratégicas, sessões de Hot Seats (diagnóstico ao vivo do seu negócio) e rodadas de negócios para maximizar seu aprendizado e conexões."
+    question: "Como são realizados os encontros?",
+    answer: "Serão realizados 8 encontros presenciais, sendo encontros quinzenais de 4 horas cada, focados em treinamentos, análises de atendimento e direcionamento estratégico."
   },
   {
     id: "faq_4",
-    question: "Para quem é indicada esta mentoria?",
-    answer: "Indicada para profissionais, consultores, prestadores de serviço e empreendedores que já possuem um produto ou serviço de valor, mas sentem que estão vendendo abaixo do seu potencial, com insegurança no fechamento ou sem previsibilidade de faturamento."
+    question: "Para quem é indicada esta consultoria?",
+    answer: "Indicada para empresas, gestores e líderes comerciais que desejam estruturar rotinas, implementar indicadores precisos e desenvolver a equipe de vendas para escalar resultados com previsibilidade."
   },
   {
     id: "faq_5",
-    question: "O que é o movimento presencial exclusivo?",
-    answer: "É um encontro presencial especial focado em alta energia, alinhamento de visão, networking estratégico e celebração dos resultados das turmas."
+    question: "Os treinamentos são padronizados ou personalizados?",
+    answer: "Todos os nossos treinamentos são personalizados para a demanda comportamental e comercial específica do seu time, com exemplos abordados com base na realidade do dia a dia da sua empresa."
   },
   {
     id: "faq_6",
-    question: "Como posso saber se o meu perfil é ideal para a mentoria?",
-    answer: "Você pode clicar no botão de WhatsApp para falar diretamente com a nossa equipe de seleção ou preencher o formulário de aplicação na página para que façamos uma análise prévia do seu negócio."
+    question: "Como posso saber se é o momento ideal para a minha empresa?",
+    answer: "Você pode clicar no botão de WhatsApp ou preencher a aplicação para agendarmos uma Sessão Estratégica. Faremos uma análise do cenário atual da sua empresa para entender se a consultoria é o melhor caminho."
   }
 ];
 
 export const AGITATION_PAINS = [
   {
-    title: "Sente desconforto ou insegurança ao apresentar o valor do seu trabalho?",
-    description: "Muitas vezes você hesita na hora de passar o orçamento ou aceita descontos por medo do cliente recusar."
+    title: "Sua equipe de vendas está desmotivada ou sem direcionamento claro?",
+    description: "Falta uma rotina de acompanhamento, alinhamentos e feedbacks, deixando os vendedores sem saber onde exatamente precisam melhorar."
   },
   {
-    title: "Receio constante de parecer chato, insistente ou 'forçar a barra'?",
-    description: "Você evita fazer o acompanhamento necessário porque não quer incomodar, perdendo vendas quentes."
+    title: "Processos comerciais desorganizados e dependência do 'acaso'?",
+    description: "Não existe um funil claro ou uso efetivo do CRM, resultando em leads perdidos e falta de previsibilidade nos resultados."
   },
   {
-    title: "Trabalha exaustivamente, mas não vê o faturamento crescer de forma previsível?",
-    description: "Você sente que depende da sorte ou da indicação espontânea, sem ter um processo comercial estruturado."
+    title: "Baixa taxa de conversão e dificuldade de contornar objeções?",
+    description: "Seu time tem dificuldade em criar conexão com diferentes perfis de clientes e acaba perdendo vendas quentes por falta de técnica de negociação."
   },
   {
-    title: "Crenças limitantes e vozes internas de que você não está pronto?",
-    description: "Sentimento de estagnação onde você sabe do seu potencial técnico, mas não consegue transformar isso em retorno financeiro."
+    title: "Gestão sobrecarregada e sem indicadores precisos?",
+    description: "Você investe energia apagando incêndios ao invés de liderar de forma estratégica, sem métricas claras para tomada de decisão."
   }
 ];

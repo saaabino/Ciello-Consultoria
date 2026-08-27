@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { TESTIMONIAL_SCREENSHOTS } from '../data/landingData';
 import { MessageCircle, ZoomIn, TrendingUp, Award, ArrowRight, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
+import { trackWhatsAppClick } from '../lib/metaPixel';
 
 interface WhatsAppProofProps {
   whatsAppPhone: string;
@@ -222,6 +223,7 @@ export const WhatsAppProof: React.FC<WhatsAppProofProps> = ({
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick('Testimonials Section')}
               className="inline-flex items-center space-x-3 px-8 py-4 rounded-full bg-[#C5A059] text-white font-black text-xs uppercase tracking-widest hover:bg-[#A38244] shadow-md transition-all transform hover:-translate-y-0.5"
             >
               <MessageCircle className="w-5 h-5 fill-white" />

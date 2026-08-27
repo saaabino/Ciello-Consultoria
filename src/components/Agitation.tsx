@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AlertTriangle, CheckSquare, Square, ArrowRight, MessageCircle } from 'lucide-react';
 import { AGITATION_PAINS } from '../data/landingData';
+import { trackWhatsAppClick } from '../lib/metaPixel';
 
 interface AgitationProps {
   whatsAppPhone: string;
@@ -35,11 +36,11 @@ export const Agitation: React.FC<AgitationProps> = ({
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-[#1A1A1A] leading-tight">
-            Insegurança no fechamento travando seu crescimento?
+            Seu time de vendas está travando o crescimento da empresa?
           </h2>
 
           <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
-            O seu conhecimento técnico já é excelente. O que está travando o seu próximo nível financeiro não é a falta de esforço, mas sim a forma como você enxerga e conduz suas vendas.
+            Seu produto ou serviço já é validado pelo mercado. O que está travando o seu próximo nível de faturamento é a falta de processo comercial, liderança ativa e capacitação estratégica da sua equipe.
           </p>
         </div>
 
@@ -90,7 +91,7 @@ export const Agitation: React.FC<AgitationProps> = ({
               : 'Se você se identifica com qualquer um desses pontos, é hora de mudar sua estratégia.'}
           </h3>
           <p className="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-            Continuar vendendo no improviso vai te prender a faturamentos instáveis. Instale uma base emocional forte e scripts de fechamento humanizados e de alto valor.
+            Deixar a equipe comercial solta e sem método resulta em perdas financeiras diárias. Estruture seus processos, capacite sua liderança e treine seu time para multiplicar conversões.
           </p>
 
           <div className="pt-2">
@@ -99,10 +100,11 @@ export const Agitation: React.FC<AgitationProps> = ({
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick('Agitation Section')}
               className="inline-flex items-center justify-center space-x-3 px-8 py-4 rounded-full bg-[#C5A059] text-white font-black text-xs sm:text-sm uppercase tracking-widest hover:bg-[#A38244] shadow-lg shadow-[#C5A059]/30 transition-all duration-300 transform hover:-translate-y-0.5"
             >
               <MessageCircle className="w-5 h-5 fill-white" />
-              <span>Quero Destravar Minhas Vendas Agora</span>
+              <span>Quero Estruturar Minha Equipe Agora</span>
               <ArrowRight className="w-5 h-5" />
             </a>
           </div>

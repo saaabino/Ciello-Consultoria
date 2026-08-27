@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FAQ_ITEMS } from '../data/landingData';
 import { HelpCircle, ChevronDown, MessageCircle, ArrowRight } from 'lucide-react';
+import { trackWhatsAppClick } from '../lib/metaPixel';
 
 interface FAQProps {
   whatsAppPhone: string;
@@ -83,6 +84,7 @@ export const FAQ: React.FC<FAQProps> = ({
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick('FAQ Section')}
               className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-full bg-[#C5A059] text-white font-black text-xs uppercase tracking-widest hover:bg-[#A38244] shadow-md transition-all"
             >
               <MessageCircle className="w-4 h-4 fill-white" />

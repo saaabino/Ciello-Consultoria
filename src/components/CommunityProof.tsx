@@ -15,15 +15,15 @@ export const CommunityProof: React.FC<CommunityProofProps> = ({ onOpenImageModal
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#262626] border border-[#C5A059]/40 text-[#C5A059] text-xs font-bold tracking-[0.2em] uppercase">
             <Users className="w-4 h-4 text-[#C5A059]" />
-            <span>Comunidade Exclusiva</span>
+            <span>Treinamentos Práticos</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
-            Você é a média do seu ecossistema
+            Engajamento e Resultados Reais
           </h2>
 
           <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-            Na <strong className="text-white font-bold">Mentoria Meta Ousada</strong>, você ingressa em um ambiente blindado, rodeado de profissionais que compartilham da mesma ambição de crescer e dobrar o faturamento.
+            Na <strong className="text-white font-bold">Consultoria Método 5D Comercial</strong>, sua equipe passará por vivências práticas, capacitação intensa e alinhamento estratégico para buscar grandes resultados.
           </p>
         </div>
 
@@ -69,17 +69,17 @@ export const CommunityProof: React.FC<CommunityProofProps> = ({ onOpenImageModal
           <div className="text-left space-y-1">
             <h4 className="text-base font-black uppercase text-white flex items-center space-x-2 tracking-tight">
               <Sparkles className="w-5 h-5 text-[#C5A059]" />
-              <span>Próxima Turma Exclusiva</span>
+              <span>Agenda de Consultorias</span>
             </h4>
             <p className="text-xs sm:text-sm text-gray-300">
-              Vagas limitadas para garantir o acompanhamento individualizado e a proximidade das trocas.
+              Vagas limitadas para garantir o acompanhamento de perto da sua empresa.
             </p>
           </div>
           <a
             href="#aplicacao"
             className="inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-full bg-[#C5A059] text-white font-black text-xs uppercase tracking-widest hover:bg-[#A38244] shadow-md transition-all shrink-0"
           >
-            <span>Garantir Minha Vaga</span>
+            <span>Agendar Sessão Estratégica</span>
           </a>
         </div>
 

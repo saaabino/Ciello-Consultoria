@@ -46,7 +46,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
 
   // Helper to construct WhatsApp message text with lead data
   const buildWhatsAppText = () => {
-    let msg = `Olá, Fernanda! Gostaria de me candidatar para a Mentoria Meta Ousada.\n\n📋 *Ficha de Aplicação:*\n`;
+    let msg = `Olá, Fernanda! Gostaria de me candidatar para a Consultoria Método 5D Comercial.\n\n📋 *Ficha de Aplicação:*\n`;
     msg += `• *Nome:* ${formData.fullName}\n`;
     msg += `• *E-mail:* ${formData.email}\n`;
     msg += `• *WhatsApp:* ${formData.phone}\n`;
@@ -65,21 +65,6 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
     return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(buildWhatsAppText())}`;
   };
 
-  const getEmailLink = () => {
-    const subject = encodeURIComponent(`Aplicação Mentoria Meta Ousada - ${formData.fullName}`);
-    const body = encodeURIComponent(
-      `Olá, Mentora Fernanda e equipe!\n\n` +
-      `Gostaria de enviar minha aplicação para a Mentoria Meta Ousada:\n\n` +
-      `Nome: ${formData.fullName}\n` +
-      `E-mail: ${formData.email}\n` +
-      `WhatsApp: ${formData.phone}\n` +
-      `Segmento: ${formData.segment || 'Não informado'}\n` +
-      `Maior Desafio: ${formData.mainChallenge || 'Não informado'}\n\n` +
-      `Aguardo seu contato!`
-    );
-    return `mailto:contato@metaousada.com.br?subject=${subject}&body=${body}`;
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -92,26 +77,6 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
     }
 
     try {
-      // Submit lead to backend API which sends email to ciello.consultoria11@gmail.com
-      const res = await fetch('/api/application', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fullName: formData.fullName,
-          email: formData.email,
-          phone: formData.phone,
-          segment: formData.segment,
-          mainChallenge: formData.mainChallenge,
-          webhookUrl: webhookUrl
-        })
-      });
-
-      const data = await res.json().catch(() => ({}));
-
-      if (!res.ok) {
-        throw new Error(data.message || data.error || "Não foi possível conectar ao servidor de e-mail.");
-      }
-
       const newLead: SavedLead = {
         id: Date.now().toString(),
         fullName: formData.fullName,
@@ -135,33 +100,12 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
       }
 
       setSubmitted(true);
+      
+      // Open WhatsApp link directly
+      window.open(getWhatsAppLink(), '_blank');
     } catch (err: any) {
       console.error("Submission error:", err);
-      // Fallback: Save lead locally and notify user, allowing them to proceed
-      const newLead: SavedLead = {
-        id: Date.now().toString(),
-        fullName: formData.fullName,
-        email: formData.email,
-        phone: formData.phone,
-        segment: formData.segment,
-        mainChallenge: formData.mainChallenge,
-        createdAt: new Date().toISOString()
-      };
-
-      // Track Meta Pixel Lead event even on fallback
-      trackLeadSubmission({
-        name: formData.fullName,
-        email: formData.email,
-        phone: formData.phone,
-        segment: formData.segment
-      });
-
-      if (onLeadSubmitted) {
-        onLeadSubmitted(newLead);
-      }
-
-      // Even if background API had network blip, show submitted screen so lead is not blocked
-      setSubmitted(true);
+      setErrorMessage("Ocorreu um erro ao processar sua aplicação.");
     } finally {
       setLoading(false);
     }
@@ -187,11 +131,11 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight">
-            Aplicação para a Mentoria
+            Aplicação para a Consultoria
           </h2>
 
           <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto">
-            Preencha os dados abaixo. Sua aplicação será enviada diretamente para o e-mail oficial da Mentoria Meta Ousada.
+            Preencha os dados abaixo. Faremos uma análise do cenário atual da sua empresa para entender se a Consultoria Método 5D é o melhor caminho.
           </p>
         </div>
 
@@ -208,10 +152,10 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
 
               <div className="space-y-2">
                 <h3 className="text-2xl font-black uppercase text-white">
-                  Aplicação Enviada por E-mail com Sucesso!
+                  Tudo certo! Redirecionando...
                 </h3>
                 <p className="text-gray-300 text-sm max-w-md mx-auto">
-                  Sua ficha de aplicação foi recebida com sucesso pela equipe da mentoria. Entraremos em contato em breve através do seu e-mail ou WhatsApp!
+                  Sua ficha de aplicação foi processada. Você está sendo redirecionado para o WhatsApp da nossa equipe. Caso a janela não abra, clique no botão abaixo.
                 </p>
               </div>
 
@@ -237,7 +181,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
                   className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-full bg-[#C5A059] text-white font-black text-xs uppercase tracking-widest hover:bg-[#A38244] transition-all shadow-lg"
                 >
                   <MessageCircle className="w-4 h-4 fill-white" />
-                  <span>Falar também no WhatsApp (Opcional)</span>
+                  <span>Concluir pelo WhatsApp</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
@@ -358,12 +302,12 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
                   {loading ? (
                     <>
                       <RefreshCw className="w-5 h-5 animate-spin" />
-                      <span>Enviando por E-mail...</span>
+                      <span>Processando...</span>
                     </>
                   ) : (
                     <>
-                      <Mail className="w-5 h-5 text-white" />
-                      <span>Enviar Aplicação por E-mail</span>
+                      <MessageCircle className="w-5 h-5 text-white" />
+                      <span>Enviar e Falar no WhatsApp</span>
                     </>
                   )}
                 </button>

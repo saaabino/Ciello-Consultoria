@@ -1,5 +1,6 @@
 import React from 'react';
 import { Sparkles, MessageCircle, ShieldCheck } from 'lucide-react';
+import { trackWhatsAppClick } from '../lib/metaPixel';
 
 interface FooterProps {
   whatsAppPhone: string;
@@ -27,17 +28,17 @@ export const Footer: React.FC<FooterProps> = ({
                 </div>
               </div>
               <span className="text-sm font-black text-white tracking-[0.2em] uppercase">
-                MENTORIA META OUSADA
+                MÉTODO 5D COMERCIAL
               </span>
             </div>
             
             <p className="text-gray-400 text-xs max-w-md leading-relaxed">
-              Desenvolvimento de liderança, desbloqueio comercial e escala de faturamento para profissionais e empreendedores ambiciosos.
+              Consultoria personalizada focada em gestão comercial, estruturação de processos e desenvolvimento da equipe para multiplicar seus resultados.
             </p>
 
             <div className="flex items-center space-x-2 text-[11px] text-[#C5A059] font-bold uppercase tracking-wider">
               <ShieldCheck className="w-4 h-4 shrink-0" />
-              <span>Mentoria conduzida por Fernanda. Todos os direitos reservados.</span>
+              <span>Ciello Consultoria conduzida por Fernanda Ciello. Todos os direitos reservados.</span>
             </div>
           </div>
 
@@ -45,11 +46,11 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="md:col-span-3 space-y-2">
             <p className="text-white font-bold uppercase tracking-[0.2em] text-[11px]">Navegação</p>
             <ul className="space-y-1.5 text-stone-400">
-              <li><a href="#solucao" className="hover:text-[#C5A059] transition-colors">A Mentoria</a></li>
+              <li><a href="#solucao" className="hover:text-[#C5A059] transition-colors">A Consultoria</a></li>
               <li><a href="#pilares" className="hover:text-[#C5A059] transition-colors">Os 5 Pilares</a></li>
-              <li><a href="#comunidade" className="hover:text-[#C5A059] transition-colors">Comunidade</a></li>
+              <li><a href="#comunidade" className="hover:text-[#C5A059] transition-colors">Treinamentos Presenciais</a></li>
               <li><a href="#depoimentos" className="hover:text-[#C5A059] transition-colors">Resultados e Prints</a></li>
-              <li><a href="#aplicacao" className="hover:text-[#C5A059] transition-colors">Formulário de Aplicação</a></li>
+              <li><a href="#aplicacao" className="hover:text-[#C5A059] transition-colors">Agendar Sessão Estratégica</a></li>
             </ul>
           </div>
 
@@ -60,9 +61,11 @@ export const Footer: React.FC<FooterProps> = ({
               Dúvidas sobre o processo seletivo ou atendimento direto:
             </p>
             <a
+              id="footer-whatsapp-cta"
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick('Footer Section')}
               className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-[#C5A059] text-white font-black text-xs uppercase tracking-wider hover:bg-[#A38244] transition-all"
             >
               <MessageCircle className="w-4 h-4 fill-white" />
@@ -78,7 +81,7 @@ export const Footer: React.FC<FooterProps> = ({
             Este site não faz parte do site do Facebook ou da Meta Inc. Além disso, este site NÃO é endossado pelo Facebook de nenhuma maneira. FACEBOOK é uma marca comercial da META, Inc.
           </p>
           <p>
-            Mentoria Meta Ousada © {new Date().getFullYear()} — Todos os direitos reservados.
+            Ciello Consultoria © {new Date().getFullYear()} — Todos os direitos reservados.
           </p>
         </div>
 

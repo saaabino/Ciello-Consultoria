@@ -1,6 +1,7 @@
 import React from 'react';
 import { Calendar, Users, MessageSquare, Flame, MapPin, CheckCircle, ArrowRight, Sparkles } from 'lucide-react';
 import { MENTOR_IMAGES } from '../data/landingData';
+import { trackWhatsAppClick } from '../lib/metaPixel';
 
 interface SolutionProps {
   whatsAppPhone: string;
@@ -30,11 +31,11 @@ export const Solution: React.FC<SolutionProps> = ({
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
-            Mentoria <span className="text-[#C5A059]">Meta Ousada</span>
+            Consultoria <span className="text-[#C5A059]">Método 5D Comercial</span>
           </h2>
 
           <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-            4 meses de acompanhamento intensivo: suporte em grupo, mentorias individuais e encontros quinzenais estratégicos para colocar o seu faturamento em um novo patamar.
+            4 meses de acompanhamento intensivo: encontros presenciais, estruturação de processos, treinamentos práticos de equipe e suporte estratégico via WhatsApp.
           </p>
         </div>
 
@@ -47,10 +48,10 @@ export const Solution: React.FC<SolutionProps> = ({
               <Calendar className="w-5 h-5 text-white" />
             </div>
             <h3 className="text-lg font-bold uppercase text-white">
-              Encontros Quinzenais Ao Vivo
+              Encontros Presenciais
             </h3>
             <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">
-              Reuniões online quinzenais focadas em direcionamento estratégico, com <strong>Hot Seats ao vivo</strong> e <strong>Rodadas de Negócios</strong>.
+              8 encontros presenciais ao longo de 4 meses (quinzenais de 4 horas cada) focados em gestão e desenvolvimento.
             </p>
           </div>
 
@@ -63,7 +64,7 @@ export const Solution: React.FC<SolutionProps> = ({
               Acompanhamento WhatsApp
             </h3>
             <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">
-              Suporte próximo e direto para validar propostas, ajustar roteiros de reuniões e tirar dúvidas operacionais em tempo real.
+              Suporte semanal direto para liderança tirar dúvidas de gestão, vendas, feedbacks e atendimento.
             </p>
           </div>
 
@@ -73,10 +74,10 @@ export const Solution: React.FC<SolutionProps> = ({
               <Users className="w-5 h-5 text-white" />
             </div>
             <h3 className="text-lg font-bold uppercase text-white">
-              Comunidade de Alto Nível
+              Treinamento de Equipe
             </h3>
             <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">
-              Troca constante em um grupo VIP com empreendedores ambiciosos, gerando indicações mútuas e alianças estratégicas.
+              Desenvolvimento prático da equipe comercial com foco em técnicas de conexão, negociação e contorno de objeções.
             </p>
           </div>
 
@@ -86,10 +87,10 @@ export const Solution: React.FC<SolutionProps> = ({
               <MapPin className="w-5 h-5 text-white" />
             </div>
             <h3 className="text-lg font-bold uppercase text-white">
-              Encontro Presencial Exclusivo
+              Estruturação de Processos
             </h3>
             <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">
-              Um evento presencial marcante para selar parcerias, vivenciar dinâmicas de alto impacto emocional e celebrar sua evolução.
+              Organização de funil, rotinas de follow-up, onboarding de novos vendedores e estruturação do CRM.
             </p>
           </div>
 
@@ -105,9 +106,9 @@ export const Solution: React.FC<SolutionProps> = ({
                 <img
                   id="solution-mentor-image"
                   src={MENTOR_IMAGES.solution}
-                  alt="Mentora Fernanda Elegante"
+                  alt="Fernanda Ciello"
                   className="w-full h-auto object-cover max-h-[500px] grayscale-[15%] hover:grayscale-0 transition-all duration-700 cursor-pointer"
-                  onClick={() => onOpenImageModal && onOpenImageModal(MENTOR_IMAGES.solution, "Mentora Fernanda Elegante")}
+                  onClick={() => onOpenImageModal && onOpenImageModal(MENTOR_IMAGES.solution, "Fernanda Ciello")}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent opacity-70" />
               </div>
@@ -117,29 +118,29 @@ export const Solution: React.FC<SolutionProps> = ({
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] text-[#C5A059] font-bold">
                 <Flame className="w-4 h-4 text-[#C5A059]" />
-                <span>Sua Mentora & Guia Estratégica</span>
+                <span>Sua Mentora & Consultora</span>
               </div>
 
               <h3 className="text-3xl sm:text-4xl font-black uppercase text-white tracking-tight">
-                Quem é Fernanda?
+                Quem somos: Fernanda Ciello
               </h3>
 
               <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-                Fernanda é estrategista de negócios e mentora de profissionais que desejam escalar seus resultados sem perder a essência. Desenvolveu a metodologia <strong>Meta Ousada</strong> para unir desbloqueio emocional e técnicas modernas de vendas consultivas.
+                Apaixonada por vendas, comportamento humano e autoconhecimento. <strong>Economista e especialista em venda comportamental.</strong> Há quatro anos nasceu a Ciello Consultoria com o propósito de potencializar empresas através de pessoas desenvolvidas para atingir resultados intencionais.
               </p>
 
               <div className="space-y-3 pt-2">
                 <div className="flex items-start space-x-3 text-stone-300 text-sm sm:text-base">
                   <CheckCircle className="w-5 h-5 text-[#C5A059] shrink-0 mt-0.5" />
-                  <span>Método validado por dezenas de turmas e profissionais de diversos segmentos.</span>
+                  <span><strong>980+ Vidas Impactadas:</strong> Profissionais transformados no Brasil e em Portugal.</span>
                 </div>
                 <div className="flex items-start space-x-3 text-stone-300 text-sm sm:text-base">
                   <CheckCircle className="w-5 h-5 text-[#C5A059] shrink-0 mt-0.5" />
-                  <span>Abordagem prática: sem teorias cansativas, foco 100% em aplicação e caixa rápido.</span>
+                  <span><strong>45+ Nichos Atendidos:</strong> Experiência diversificada em múltiplos segmentos B2B e B2C.</span>
                 </div>
                 <div className="flex items-start space-x-3 text-stone-300 text-sm sm:text-base">
                   <CheckCircle className="w-5 h-5 text-[#C5A059] shrink-0 mt-0.5" />
-                  <span>Acompanhamento olho no olho durante todo o ciclo de 4 meses.</span>
+                  <span>Todos os treinamentos são 100% personalizados para a demanda e realidade comercial do seu time.</span>
                 </div>
               </div>
 
@@ -149,6 +150,7 @@ export const Solution: React.FC<SolutionProps> = ({
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackWhatsAppClick('Solution Section')}
                   className="inline-flex items-center space-x-3 px-8 py-4 rounded-full bg-[#C5A059] text-white font-black text-xs sm:text-sm uppercase tracking-widest hover:bg-[#A38244] shadow-lg shadow-[#C5A059]/30 transition-all duration-300"
                 >
                   <span>Falar com a Fernanda e Equipe</span>

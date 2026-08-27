@@ -30,36 +30,36 @@ export const Hero: React.FC<HeroProps> = ({
             {/* Tagline Badge */}
             <div className="inline-flex items-center space-x-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#262626] border border-[#C5A059]/40 text-[#C5A059] text-[11px] sm:text-xs font-bold uppercase tracking-[0.12em] sm:tracking-[0.15em]">
               <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#C5A059] shrink-0" />
-              <span>Mentoria Intensiva de 4 Meses</span>
+              <span>Consultoria Personalizada de 4 Meses</span>
             </div>
 
             {/* Headline */}
             <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase text-white leading-[1.12] tracking-tighter">
-              Você nasceu para o <span className="text-[#C5A059] block mt-0.5 sm:mt-1">extraordinário.</span>
+              Multiplique os Resultados da <span className="text-[#C5A059] block mt-0.5 sm:mt-1">Sua Equipe Comercial.</span>
             </h1>
 
             {/* Subheadline */}
             <p className="text-gray-300 text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-2xl">
-              Pare de jogar pequeno. Desbloqueie sua mentalidade, domine a arte das vendas de alto valor e dobre seu faturamento com a <strong className="text-white font-bold">Mentoria Meta Ousada</strong>.
+              Estruture seus processos, desenvolva a liderança e treine seu time de vendas com a <strong className="text-white font-bold">Consultoria Método 5D Comercial</strong>. Transforme sua gestão em uma máquina de previsibilidade e escala.
             </p>
 
             {/* Value Highlights */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
               <div className="flex items-center space-x-2.5 text-stone-300 text-sm">
                 <CheckCircle2 className="w-5 h-5 text-[#C5A059] shrink-0" />
-                <span>Desbloqueio de Crenças Limitantes</span>
+                <span>Gestão Estratégica & Liderança</span>
               </div>
               <div className="flex items-center space-x-2.5 text-stone-300 text-sm">
                 <CheckCircle2 className="w-5 h-5 text-[#C5A059] shrink-0" />
-                <span>Vendas Naturais Sem Pressão</span>
+                <span>Estruturação de Processos e CRM</span>
               </div>
               <div className="flex items-center space-x-2.5 text-stone-300 text-sm">
                 <CheckCircle2 className="w-5 h-5 text-[#C5A059] shrink-0" />
-                <span>Encontros Ao Vivo & Hot Seats</span>
+                <span>Treinamento de Vendas & Negociação</span>
               </div>
               <div className="flex items-center space-x-2.5 text-stone-300 text-sm">
                 <CheckCircle2 className="w-5 h-5 text-[#C5A059] shrink-0" />
-                <span>Suporte Individual no WhatsApp</span>
+                <span>Acompanhamento Prático de 4 Meses</span>
               </div>
             </div>
 
@@ -115,9 +115,9 @@ export const Hero: React.FC<HeroProps> = ({
 
                 {/* Bottom Overlay Label */}
                 <div className="absolute bottom-4 left-4 right-4 bg-[#1A1A1A]/90 backdrop-blur-md p-4 rounded-xl border border-[#C5A059]/30 shadow-lg">
-                  <p className="text-xs uppercase tracking-[0.2em] text-[#C5A059] font-bold">Mentora de Negócios & Vendas</p>
-                  <p className="text-xl font-black text-white uppercase tracking-tight">Fernanda</p>
-                  <p className="text-xs text-gray-300 mt-0.5">Especialista em destravar a mentalidade e acelerar faturamento comercial.</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-[#C5A059] font-bold">Especialista em Vendas B2B</p>
+                  <p className="text-xl font-black text-white uppercase tracking-tight">Fernanda Ciello</p>
+                  <p className="text-xs text-gray-300 mt-0.5">Economista e especialista em venda comportamental e gestão comercial.</p>
                 </div>
               </div>
 
