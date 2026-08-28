@@ -48,7 +48,7 @@ export const Footer: React.FC<FooterProps> = ({
             <ul className="space-y-1.5 text-stone-400">
               <li><a href="#solucao" className="hover:text-[#C5A059] transition-colors">A Consultoria</a></li>
               <li><a href="#pilares" className="hover:text-[#C5A059] transition-colors">Os 5 Pilares</a></li>
-              <li><a href="#comunidade" className="hover:text-[#C5A059] transition-colors">Treinamentos Presenciais</a></li>
+              <li><a href="#comunidade" className="hover:text-[#C5A059] transition-colors">Treinamentos de Equipe</a></li>
               <li><a href="#depoimentos" className="hover:text-[#C5A059] transition-colors">Resultados e Prints</a></li>
               <li><a href="#aplicacao" className="hover:text-[#C5A059] transition-colors">Agendar Sessão Estratégica</a></li>
             </ul>

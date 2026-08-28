@@ -35,26 +35,13 @@ export const Solution: React.FC<SolutionProps> = ({
           </h2>
 
           <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-            4 meses de acompanhamento intensivo: encontros presenciais, estruturação de processos, treinamentos práticos de equipe e suporte estratégico via WhatsApp.
+            4 meses de acompanhamento intensivo: estruturação de processos, treinamentos práticos de equipe e suporte estratégico via WhatsApp.
           </p>
         </div>
 
         {/* Deliverables Grid (4 Pillars of Delivery) */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           
-          {/* Card 1: Bi-Weekly Online Meetings */}
-          <div className="p-6 rounded-2xl bg-[#262626] border border-[#C5A059]/20 hover:border-[#C5A059] transition-all duration-300 space-y-4 group">
-            <div className="w-10 h-10 rounded-sm bg-[#C5A059] flex items-center justify-center font-bold text-white shadow-md">
-              <Calendar className="w-5 h-5 text-white" />
-            </div>
-            <h3 className="text-lg font-bold uppercase text-white">
-              Encontros Presenciais
-            </h3>
-            <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">
-              8 encontros presenciais ao longo de 4 meses (quinzenais de 4 horas cada) focados em gestão e desenvolvimento.
-            </p>
-          </div>
-
           {/* Card 2: Individual WhatsApp Guidance */}
           <div className="p-6 rounded-2xl bg-[#262626] border border-[#C5A059]/20 hover:border-[#C5A059] transition-all duration-300 space-y-4 group">
             <div className="w-10 h-10 rounded-sm bg-[#C5A059] flex items-center justify-center font-bold text-white shadow-md">

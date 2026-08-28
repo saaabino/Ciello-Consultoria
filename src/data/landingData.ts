@@ -83,8 +83,8 @@ export const COMMUNITY_PHOTOS: CommunityPhoto[] = [
   {
     id: "comm_1",
     src: "https://i.ibb.co/chf7Gm9d/Ontem-tivemos-um-dia-extremamente-ESPECIAL-Nossa-mentoria-A-VIRADA-foi-muito-ale-m-do-imaginado.jpg",
-    alt: "Evento Presencial Especial - Mentoria A Virada",
-    title: "Encontro Presencial Exclusivo",
+    alt: "Treinamento Prático - Método 5D",
+    title: "Treinamento Prático da Equipe",
     description: "Um dia transformador de alinhamento, networking de altíssimo nível e estratégias de aceleração."
   },
   {
@@ -112,13 +112,6 @@ export const COMMUNITY_PHOTOS: CommunityPhoto[] = [
 
 export const TESTIMONIAL_SCREENSHOTS: TestimonialScreenshot[] = [
   {
-    id: 1,
-    src: "https://i.ibb.co/LzR8bqXk/Whats-App-Image-2026-07-29-at-15-39-50-1.jpg",
-    alt: "Resultado de cliente 1",
-    caption: "Aumento expressivo no fechamento de propostas após aplicar o método de conversa e persuasão.",
-    resultBadge: "Recorde de Vendas"
-  },
-  {
     id: 2,
     src: "https://i.ibb.co/BHjy9mfJ/Whats-App-Image-2026-07-29-at-15-39-50-2.jpg",
     alt: "Resultado de cliente 2",
@@ -145,13 +138,6 @@ export const TESTIMONIAL_SCREENSHOTS: TestimonialScreenshot[] = [
     alt: "Resultado de cliente 5",
     caption: "Conversão de clientes antigos parados com a sequência de acompanhamento humanizado.",
     resultBadge: "Follow-up Eficiente"
-  },
-  {
-    id: 6,
-    src: "https://i.ibb.co/qYTmhxyk/Whats-App-Image-2026-07-29-at-15-39-51-2.jpg",
-    alt: "Resultado de cliente 6",
-    caption: "Mentalidade destravada para fazer propostas ousadas e conduzir negociações de alto impacto.",
-    resultBadge: "Destravar Comercial"
   },
   {
     id: 7,
@@ -193,11 +179,6 @@ export const FAQ_ITEMS: FAQItem[] = [
     id: "faq_2",
     question: "Como funciona o suporte no dia a dia?",
     answer: "A liderança da empresa e a equipe terão suporte semanal via WhatsApp para tirar dúvidas relacionadas à gestão, feedbacks, atendimentos, fechamento de vendas e desenvolvimento da equipe."
-  },
-  {
-    id: "faq_3",
-    question: "Como são realizados os encontros?",
-    answer: "Serão realizados 8 encontros presenciais, sendo encontros quinzenais de 4 horas cada, focados em treinamentos, análises de atendimento e direcionamento estratégico."
   },
   {
     id: "faq_4",

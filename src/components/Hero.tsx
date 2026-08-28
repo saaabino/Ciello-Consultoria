@@ -40,7 +40,7 @@ export const Hero: React.FC<HeroProps> = ({
 
             {/* Subheadline */}
             <p className="text-gray-300 text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-2xl">
-              Estruture seus processos, desenvolva a liderança e treine seu time de vendas com a <strong className="text-white font-bold">Consultoria Método 5D Comercial</strong>. Transforme sua gestão em uma máquina de previsibilidade e escala.
+              Estruture seus processos, desenvolva a liderança e treine seu time de vendas com a <strong className="text-white font-bold">Consultoria Método 5D Comercial</strong>.
             </p>
 
             {/* Value Highlights */}
