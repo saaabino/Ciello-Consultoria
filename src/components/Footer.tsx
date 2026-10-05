@@ -22,11 +22,6 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Brand Info */}
           <div className="md:col-span-6 space-y-3">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 rounded-lg bg-[#C5A059] p-[1px]">
-                <div className="w-full h-full bg-[#1A1A1A] rounded-[7px] flex items-center justify-center">
-                  <Sparkles className="w-4 h-4 text-[#C5A059]" />
-                </div>
-              </div>
               <span className="text-sm font-black text-white tracking-[0.2em] uppercase">
                 MÉTODO 5D COMERCIAL
               </span>

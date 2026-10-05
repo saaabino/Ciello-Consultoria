@@ -6,8 +6,8 @@ export const MENTOR_IMAGES = {
 };
 
 export const HERO_VIDEO_CONFIG = {
-  // Direct MP4 URL, local path (e.g. '/videos/hero-video.mp4'), or cloud URL
-  videoUrl: "/videos/hero-video.mp4",
+  // Direct MP4 URL, YouTube Shorts link, or cloud URL
+  videoUrl: "https://youtube.com/shorts/sooInny5LuE",
   fallbackImage: MENTOR_IMAGES.hero,
   autoPlay: true,
   loop: true,

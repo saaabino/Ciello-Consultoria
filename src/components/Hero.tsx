@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, ShieldCheck, Sparkles, CheckCircle2, ArrowRight, Volume2, VolumeX } from 'lucide-react';
-import { MENTOR_IMAGES } from '../data/landingData';
+import { MENTOR_IMAGES, HERO_VIDEO_CONFIG } from '../data/landingData';
 import { trackWhatsAppClick, trackCTAClick } from '../lib/metaPixel';
 
 interface HeroProps {
@@ -9,12 +9,40 @@ interface HeroProps {
   onOpenImageModal?: (src: string, alt: string) => void;
 }
 
+const getVideoData = (url: string) => {
+  if (!url) return { isYouTube: false, isDrive: false, url: '' };
+
+  const ytMatch = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/);
+  if (ytMatch && ytMatch[1]) {
+    const id = ytMatch[1];
+    return {
+      isYouTube: true,
+      isDrive: false,
+      url: `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${id}&playsinline=1&rel=0&modestbranding=1&enablejsapi=1`
+    };
+  }
+
+  const driveMatch = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+  if (driveMatch && driveMatch[1]) {
+    const id = driveMatch[1];
+    return {
+      isYouTube: false,
+      isDrive: true,
+      url: `https://drive.google.com/file/d/${id}/preview`
+    };
+  }
+
+  return { isYouTube: false, isDrive: false, url };
+};
+
 export const Hero: React.FC<HeroProps> = ({
   whatsAppPhone,
   whatsAppMessage,
 }) => {
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const videoData = getVideoData(HERO_VIDEO_CONFIG.videoUrl);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -23,7 +51,17 @@ export const Hero: React.FC<HeroProps> = ({
   }, []);
 
   const toggleSound = () => {
-    if (videoRef.current) {
+    if (videoData.isYouTube) {
+      if (iframeRef.current && iframeRef.current.contentWindow) {
+        if (isMuted) {
+          iframeRef.current.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
+          setIsMuted(false);
+        } else {
+          iframeRef.current.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'mute', args: [] }), '*');
+          setIsMuted(true);
+        }
+      }
+    } else if (videoRef.current) {
       if (isMuted) {
         videoRef.current.muted = false;
         videoRef.current.play().catch(() => {});
@@ -118,49 +156,100 @@ export const Hero: React.FC<HeroProps> = ({
 
           {/* Right Column: Mentor Image & Floating Badges */}
           <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-md lg:max-w-none">
+            <div className="relative w-full max-w-[340px] sm:max-w-[380px] md:max-w-[390px] mx-auto lg:mr-0">
               
               {/* Outer Decorative Gold Frame */}
               <div className="absolute -inset-1.5 bg-[#C5A059]/40 rounded-2xl opacity-60 blur-sm" />
 
               {/* Main Media Container: Hosted Video in Autoplay with sound toggle */}
-              <div className="relative rounded-2xl overflow-hidden bg-[#1A1A1A] border border-[#C5A059]/30 shadow-2xl group min-h-[460px] sm:min-h-[520px] max-h-[580px] flex items-center justify-center">
-                <video
-                  ref={videoRef}
-                  id="hero-mentor-video"
-                  src="/videos/hero-video.mp4"
-                  poster={MENTOR_IMAGES.hero}
-                  autoPlay
-                  muted={isMuted}
-                  loop
-                  playsInline
-                  preload="auto"
-                  className="w-full h-full min-h-[460px] sm:min-h-[520px] max-h-[580px] object-cover object-center cursor-pointer"
-                  onClick={toggleSound}
-                />
+              <div className="relative rounded-2xl overflow-hidden bg-[#1A1A1A] border border-[#C5A059]/30 shadow-2xl group aspect-[9/16] w-full max-h-[640px] flex items-center justify-center">
+                {videoData.isYouTube ? (
+                  <div
+                    className="relative w-full h-full overflow-hidden bg-black flex items-center justify-center cursor-pointer"
+                    onClick={toggleSound}
+                  >
+                    {/* Centered iframe scaled to eliminate 16:9 black pillarbox bars */}
+                    <div className="absolute inset-0 overflow-hidden flex items-center justify-center pointer-events-none">
+                      <iframe
+                        ref={iframeRef}
+                        src={videoData.url}
+                        title="Fernanda Ciello - Consultoria Método 5D Comercial"
+                        className="w-[330%] h-[110%] max-w-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      />
+                    </div>
 
-                {/* Floating Audio Control Button */}
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleSound();
-                  }}
-                  className="absolute top-4 right-4 z-20 flex items-center space-x-2 px-3 py-1.5 rounded-full bg-black/80 hover:bg-black/95 backdrop-blur-md border border-[#C5A059]/70 text-white text-xs font-semibold transition-all shadow-xl cursor-pointer transform hover:scale-105 active:scale-95"
-                  aria-label={isMuted ? "Ativar som do vídeo" : "Mutar vídeo"}
-                >
-                  {isMuted ? (
-                    <>
-                      <VolumeX className="w-3.5 h-3.5 text-[#C5A059] animate-pulse" />
-                      <span className="text-[11px] font-bold text-white tracking-wide">Ouvir com som 🔊</span>
-                    </>
-                  ) : (
-                    <>
-                      <Volume2 className="w-3.5 h-3.5 text-[#C5A059]" />
-                      <span className="text-[11px] font-bold text-white tracking-wide">Som ativado</span>
-                    </>
-                  )}
-                </button>
+                    {/* Floating Audio Control Button */}
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleSound();
+                      }}
+                      className="absolute top-4 right-4 z-20 flex items-center space-x-2 px-3 py-1.5 rounded-full bg-black/85 hover:bg-black backdrop-blur-md border border-[#C5A059]/70 text-white text-xs font-semibold transition-all shadow-xl cursor-pointer transform hover:scale-105 active:scale-95"
+                      aria-label={isMuted ? "Ativar som do vídeo" : "Mutar vídeo"}
+                    >
+                      {isMuted ? (
+                        <>
+                          <VolumeX className="w-3.5 h-3.5 text-[#C5A059] animate-pulse" />
+                          <span className="text-[11px] font-bold text-white tracking-wide">Ouvir com som 🔊</span>
+                        </>
+                      ) : (
+                        <>
+                          <Volume2 className="w-3.5 h-3.5 text-[#C5A059]" />
+                          <span className="text-[11px] font-bold text-white tracking-wide">Som ativado</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                ) : videoData.isDrive ? (
+                  <iframe
+                    src={videoData.url}
+                    title="Fernanda Ciello - Vídeo"
+                    className="w-full h-full min-h-[460px] sm:min-h-[520px] max-h-[580px] object-cover border-0"
+                    allow="autoplay"
+                  />
+                ) : (
+                  <>
+                    <video
+                      ref={videoRef}
+                      id="hero-mentor-video"
+                      src={videoData.url}
+                      poster={MENTOR_IMAGES.hero}
+                      autoPlay
+                      muted={isMuted}
+                      loop
+                      playsInline
+                      preload="auto"
+                      className="w-full h-full min-h-[460px] sm:min-h-[520px] max-h-[580px] object-cover object-center cursor-pointer"
+                      onClick={toggleSound}
+                    />
+
+                    {/* Floating Audio Control Button */}
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleSound();
+                      }}
+                      className="absolute top-4 right-4 z-20 flex items-center space-x-2 px-3 py-1.5 rounded-full bg-black/80 hover:bg-black/95 backdrop-blur-md border border-[#C5A059]/70 text-white text-xs font-semibold transition-all shadow-xl cursor-pointer transform hover:scale-105 active:scale-95"
+                      aria-label={isMuted ? "Ativar som do vídeo" : "Mutar vídeo"}
+                    >
+                      {isMuted ? (
+                        <>
+                          <VolumeX className="w-3.5 h-3.5 text-[#C5A059] animate-pulse" />
+                          <span className="text-[11px] font-bold text-white tracking-wide">Ouvir com som 🔊</span>
+                        </>
+                      ) : (
+                        <>
+                          <Volume2 className="w-3.5 h-3.5 text-[#C5A059]" />
+                          <span className="text-[11px] font-bold text-white tracking-wide">Som ativado</span>
+                        </>
+                      )}
+                    </button>
+                  </>
+                )}
 
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent opacity-80 pointer-events-none" />
 

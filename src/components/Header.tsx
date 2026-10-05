@@ -36,21 +36,21 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Brand Logo */}
         <a href="#" id="header-brand-logo" className="flex items-center space-x-2 sm:space-x-3 group min-w-0 shrink">
           <div className="w-8 h-8 sm:w-9 sm:h-9 bg-[#C5A059] flex items-center justify-center rounded-md font-black text-white text-xs sm:text-sm shadow-md group-hover:scale-105 transition-transform duration-200 shrink-0">
-            MO
+            FC
           </div>
           <div className="min-w-0">
             <span className="text-xs sm:text-base font-black tracking-tight text-white block uppercase leading-tight truncate">
-              MENTORIA META OUSADA
+              FERNANDA CIELLO
             </span>
             <span className="text-[8px] sm:text-[10px] text-[#C5A059] tracking-[0.12em] sm:tracking-[0.2em] uppercase font-bold block truncate">
-              COM MENTORA FERNANDA
+              CONSULTORIA
             </span>
           </div>
         </a>
 
         {/* Desktop Nav */}
         <nav id="header-desktop-nav" className="hidden lg:flex items-center space-x-8 text-xs font-semibold uppercase tracking-widest text-stone-300">
-          <a href="#solucao" onClick={() => trackCTAClick('Header Nav - A Mentoria')} className="hover:text-[#C5A059] transition-colors">A Mentoria</a>
+          <a href="#solucao" onClick={() => trackCTAClick('Header Nav - A Consultoria')} className="hover:text-[#C5A059] transition-colors">A Consultoria</a>
           <a href="#pilares" onClick={() => trackCTAClick('Header Nav - Metodologia')} className="hover:text-[#C5A059] transition-colors">Metodologia</a>
           <a href="#comunidade" onClick={() => trackCTAClick('Header Nav - Comunidade')} className="hover:text-[#C5A059] transition-colors">Comunidade</a>
           <a href="#depoimentos" onClick={() => trackCTAClick('Header Nav - Resultados')} className="hover:text-[#C5A059] transition-colors">Resultados</a>
