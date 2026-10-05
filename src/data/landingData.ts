@@ -5,6 +5,14 @@ export const MENTOR_IMAGES = {
   solution: "https://i.ibb.co/CKKmHhjF/Whats-App-Image-2026-07-29-at-15-36-46-2.jpg"
 };
 
+export const HERO_VIDEO_CONFIG = {
+  // Direct MP4 URL, local path (e.g. '/videos/hero-video.mp4'), or cloud URL
+  videoUrl: "/videos/hero-video.mp4",
+  fallbackImage: MENTOR_IMAGES.hero,
+  autoPlay: true,
+  loop: true,
+};
+
 export const DEFAULT_CONFIG = {
   whatsAppPhone: "5549988941588",
   whatsAppMessage: "Olá, vim através do site! Gostaria de saber mais sobre a Consultoria Método 5D Comercial para minha empresa.",

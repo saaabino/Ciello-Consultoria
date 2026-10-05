@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import path from "path";
+import fs from "fs";
 import { fileURLToPath } from "url";
 import { createServer as createViteServer } from "vite";
 import dotenv from "dotenv";
@@ -33,9 +34,44 @@ async function startServer() {
   app.use(cors());
   app.use(express.json());
 
+  // Ensure public/videos directory exists
+  const videosDir = path.join(process.cwd(), "public", "videos");
+  if (!fs.existsSync(videosDir)) {
+    fs.mkdirSync(videosDir, { recursive: true });
+  }
+
+  // Serve static videos
+  app.use("/videos", express.static(videosDir));
+
   // Health check
   app.get("/api/health", (_req, res) => {
     res.json({ status: "ok", service: "Mentoria Meta Ousada API" });
+  });
+
+  // Check video status
+  app.get("/api/video-status", (_req, res) => {
+    const videoPath = path.join(videosDir, "hero-video.mp4");
+    const exists = fs.existsSync(videoPath);
+    res.json({ exists, url: exists ? `/videos/hero-video.mp4` : null });
+  });
+
+  // Video direct binary upload endpoint (supports up to 150MB)
+  app.post("/api/upload-hero-video", express.raw({ type: "*/*", limit: "150mb" }), (req, res) => {
+    try {
+      const buffer = req.body;
+      if (!buffer || buffer.length === 0) {
+        return res.status(400).json({ success: false, message: "Nenhum dado recebido." });
+      }
+      const targetPath = path.join(videosDir, "hero-video.mp4");
+      fs.writeFileSync(targetPath, buffer);
+      return res.json({ success: true, url: `/videos/hero-video.mp4?v=${Date.now()}` });
+    } catch (err: unknown) {
+      console.error("Erro ao salvar vídeo:", err);
+      return res.status(500).json({
+        success: false,
+        error: err instanceof Error ? err.message : String(err),
+      });
+    }
   });
 
   // Get stored leads (for commercial testing/admin dashboard)
