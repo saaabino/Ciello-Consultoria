@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, ShieldCheck, Sparkles, CheckCircle2, ArrowRight, Volume2, VolumeX, Upload } from 'lucide-react';
-import { MENTOR_IMAGES, HERO_VIDEO_CONFIG } from '../data/landingData';
+import { MessageCircle, ShieldCheck, Sparkles, CheckCircle2, ArrowRight, Volume2, VolumeX } from 'lucide-react';
+import { MENTOR_IMAGES } from '../data/landingData';
 import { trackWhatsAppClick, trackCTAClick } from '../lib/metaPixel';
 
 interface HeroProps {
@@ -9,103 +9,18 @@ interface HeroProps {
   onOpenImageModal?: (src: string, alt: string) => void;
 }
 
-const resolveVideoSrc = (url: string) => {
-  if (!url) return '';
-  const driveMatch = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-  if (driveMatch && driveMatch[1]) {
-    return `https://drive.google.com/uc?export=download&id=${driveMatch[1]}`;
-  }
-  return url;
-};
-
 export const Hero: React.FC<HeroProps> = ({
   whatsAppPhone,
   whatsAppMessage,
-  onOpenImageModal
 }) => {
   const [isMuted, setIsMuted] = useState(true);
-  const [videoError, setVideoError] = useState(false);
-  const [videoSrc, setVideoSrc] = useState<string>(resolveVideoSrc(HERO_VIDEO_CONFIG.videoUrl));
-  const [isUploading, setIsUploading] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    // Check if a video has been uploaded to the server
-    fetch('/api/video-status')
-      .then(res => res.json())
-      .then(data => {
-        if (data.exists && data.url) {
-          setVideoSrc(`${data.url}?v=${Date.now()}`);
-          setVideoError(false);
-        }
-      })
-      .catch(() => {});
-  }, []);
 
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.play().catch(() => {});
     }
-  }, [videoSrc]);
-
-  const uploadFile = async (file: File) => {
-    if (!file) return;
-
-    try {
-      setIsUploading(true);
-      const res = await fetch('/api/upload-hero-video', {
-        method: 'POST',
-        headers: {
-          'Content-Type': file.type || 'video/mp4',
-        },
-        body: file,
-      });
-
-      const data = await res.json();
-      if (data.success && data.url) {
-        setVideoSrc(data.url);
-        setVideoError(false);
-        setIsMuted(true);
-        setTimeout(() => {
-          if (videoRef.current) {
-            videoRef.current.play().catch(() => {});
-          }
-        }, 150);
-      }
-    } catch (err) {
-      console.error('Erro ao subir vídeo:', err);
-    } finally {
-      setIsUploading(false);
-    }
-  };
-
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      uploadFile(file);
-    }
-  };
-
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(true);
-  };
-
-  const handleDragLeave = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(false);
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(false);
-    const file = e.dataTransfer.files?.[0];
-    if (file) {
-      uploadFile(file);
-    }
-  };
+  }, []);
 
   const toggleSound = () => {
     if (videoRef.current) {
@@ -208,111 +123,44 @@ export const Hero: React.FC<HeroProps> = ({
               {/* Outer Decorative Gold Frame */}
               <div className="absolute -inset-1.5 bg-[#C5A059]/40 rounded-2xl opacity-60 blur-sm" />
 
-              {/* Main Media (Video with Autoplay & Mute Toggle / Image fallback) Container */}
-              <div
-                onDragOver={handleDragOver}
-                onDragLeave={handleDragLeave}
-                onDrop={handleDrop}
-                className={`relative rounded-2xl overflow-hidden bg-[#1A1A1A] ${isDragging ? 'border-2 border-dashed border-[#C5A059] scale-[1.01]' : 'border border-[#C5A059]/30'} shadow-2xl group min-h-[460px] sm:min-h-[520px] max-h-[580px] flex items-center justify-center transition-all duration-300`}
-              >
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  onChange={handleFileUpload}
-                  accept="video/mp4,video/webm,video/quicktime"
-                  className="hidden"
+              {/* Main Media Container: Hosted Video in Autoplay with sound toggle */}
+              <div className="relative rounded-2xl overflow-hidden bg-[#1A1A1A] border border-[#C5A059]/30 shadow-2xl group min-h-[460px] sm:min-h-[520px] max-h-[580px] flex items-center justify-center">
+                <video
+                  ref={videoRef}
+                  id="hero-mentor-video"
+                  src="/videos/hero-video.mp4"
+                  poster={MENTOR_IMAGES.hero}
+                  autoPlay
+                  muted={isMuted}
+                  loop
+                  playsInline
+                  preload="auto"
+                  className="w-full h-full min-h-[460px] sm:min-h-[520px] max-h-[580px] object-cover object-center cursor-pointer"
+                  onClick={toggleSound}
                 />
 
-                {isDragging && (
-                  <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-black/85 backdrop-blur-sm pointer-events-none">
-                    <Upload className="w-12 h-12 text-[#C5A059] animate-bounce" />
-                    <p className="text-white font-bold text-sm mt-3 tracking-wide uppercase">Solte o vídeo aqui para carregar</p>
-                  </div>
-                )}
-
-                {!videoError && videoSrc ? (
-                  <>
-                    <video
-                      ref={videoRef}
-                      id="hero-mentor-video"
-                      src={videoSrc}
-                      poster={HERO_VIDEO_CONFIG.fallbackImage || MENTOR_IMAGES.hero}
-                      autoPlay
-                      muted={isMuted}
-                      loop
-                      playsInline
-                      preload="auto"
-                      onError={() => setVideoError(true)}
-                      className="w-full h-full min-h-[460px] sm:min-h-[520px] max-h-[580px] object-cover object-center cursor-pointer"
-                      onClick={toggleSound}
-                    />
-
-                    {/* Discreet video replacement trigger on hover */}
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        fileInputRef.current?.click();
-                      }}
-                      disabled={isUploading}
-                      className="absolute top-4 left-4 z-20 opacity-0 group-hover:opacity-100 focus:opacity-100 flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-black/75 hover:bg-black/90 backdrop-blur-md border border-[#C5A059]/50 text-white text-[11px] font-medium transition-all shadow-md cursor-pointer"
-                      title="Subir outro arquivo de vídeo do seu dispositivo"
-                    >
-                      <Upload className="w-3 h-3 text-[#C5A059]" />
-                      <span>{isUploading ? "Enviando..." : "Alterar vídeo"}</span>
-                    </button>
-
-                    {/* Floating Audio Control Button */}
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        toggleSound();
-                      }}
-                      className="absolute top-4 right-4 z-20 flex items-center space-x-2 px-3 py-1.5 rounded-full bg-black/80 hover:bg-black/95 backdrop-blur-md border border-[#C5A059]/70 text-white text-xs font-semibold transition-all shadow-xl cursor-pointer transform hover:scale-105 active:scale-95"
-                      aria-label={isMuted ? "Ativar som do vídeo" : "Mutar vídeo"}
-                    >
-                      {isMuted ? (
-                        <>
-                          <VolumeX className="w-3.5 h-3.5 text-[#C5A059] animate-pulse" />
-                          <span className="text-[11px] font-bold text-white tracking-wide">Ouvir com som 🔊</span>
-                        </>
-                      ) : (
-                        <>
-                          <Volume2 className="w-3.5 h-3.5 text-[#C5A059]" />
-                          <span className="text-[11px] font-bold text-white tracking-wide">Som ativado</span>
-                        </>
-                      )}
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <img
-                      id="hero-mentor-image"
-                      src={MENTOR_IMAGES.hero}
-                      alt="Fernanda Ciello - Especialista em Vendas B2B"
-                      className="w-full h-auto object-cover object-center max-h-[580px] grayscale-[15%] hover:grayscale-0 transition-all duration-700 cursor-pointer"
-                      onClick={() => fileInputRef.current?.click()}
-                    />
-
-                    {/* Prominent Callout over Fallback to upload the video */}
-                    <div
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        fileInputRef.current?.click();
-                      }}
-                      className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-black/45 hover:bg-black/55 transition-colors cursor-pointer z-10"
-                    >
-                      <div className="px-5 py-3 rounded-full bg-[#C5A059] hover:bg-[#A38244] text-white font-bold text-xs uppercase tracking-wider shadow-2xl flex items-center space-x-2 transform hover:scale-105 active:scale-95 transition-all">
-                        <Upload className="w-4 h-4 text-white" />
-                        <span>{isUploading ? "Enviando vídeo..." : "Carregar Vídeo da Fernanda (MP4)"}</span>
-                      </div>
-                      <p className="text-[11px] text-white/90 font-medium mt-2.5 text-center drop-shadow">
-                        Clique aqui ou arraste o arquivo do vídeo para cá
-                      </p>
-                    </div>
-                  </>
-                )}
+                {/* Floating Audio Control Button */}
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleSound();
+                  }}
+                  className="absolute top-4 right-4 z-20 flex items-center space-x-2 px-3 py-1.5 rounded-full bg-black/80 hover:bg-black/95 backdrop-blur-md border border-[#C5A059]/70 text-white text-xs font-semibold transition-all shadow-xl cursor-pointer transform hover:scale-105 active:scale-95"
+                  aria-label={isMuted ? "Ativar som do vídeo" : "Mutar vídeo"}
+                >
+                  {isMuted ? (
+                    <>
+                      <VolumeX className="w-3.5 h-3.5 text-[#C5A059] animate-pulse" />
+                      <span className="text-[11px] font-bold text-white tracking-wide">Ouvir com som 🔊</span>
+                    </>
+                  ) : (
+                    <>
+                      <Volume2 className="w-3.5 h-3.5 text-[#C5A059]" />
+                      <span className="text-[11px] font-bold text-white tracking-wide">Som ativado</span>
+                    </>
+                  )}
+                </button>
 
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent opacity-80 pointer-events-none" />
 

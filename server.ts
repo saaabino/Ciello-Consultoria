@@ -48,32 +48,6 @@ async function startServer() {
     res.json({ status: "ok", service: "Mentoria Meta Ousada API" });
   });
 
-  // Check video status
-  app.get("/api/video-status", (_req, res) => {
-    const videoPath = path.join(videosDir, "hero-video.mp4");
-    const exists = fs.existsSync(videoPath);
-    res.json({ exists, url: exists ? `/videos/hero-video.mp4` : null });
-  });
-
-  // Video direct binary upload endpoint (supports up to 150MB)
-  app.post("/api/upload-hero-video", express.raw({ type: "*/*", limit: "150mb" }), (req, res) => {
-    try {
-      const buffer = req.body;
-      if (!buffer || buffer.length === 0) {
-        return res.status(400).json({ success: false, message: "Nenhum dado recebido." });
-      }
-      const targetPath = path.join(videosDir, "hero-video.mp4");
-      fs.writeFileSync(targetPath, buffer);
-      return res.json({ success: true, url: `/videos/hero-video.mp4?v=${Date.now()}` });
-    } catch (err: unknown) {
-      console.error("Erro ao salvar vídeo:", err);
-      return res.status(500).json({
-        success: false,
-        error: err instanceof Error ? err.message : String(err),
-      });
-    }
-  });
-
   // Get stored leads (for commercial testing/admin dashboard)
   app.get("/api/applications", (_req, res) => {
     res.json({ success: true, total: leadsStore.length, leads: leadsStore });
